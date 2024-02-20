@@ -20,10 +20,12 @@ public class RegistrationController {
 
     @Autowired
     private EmailService emailService;
+
     @PostMapping("/register")
     public Map<String ,String>registerUser(@RequestBody User user){
         // Register the user without email verification
         User registerUser= userService.registerUser(user);
+        emailService.sendOtpEmail(user.getEmail());
         return null;
     }
 }
