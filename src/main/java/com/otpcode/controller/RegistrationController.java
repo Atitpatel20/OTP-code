@@ -5,10 +5,7 @@ import com.otpcode.service.EmailService;
 import com.otpcode.service.EmailVerificationService;
 import com.otpcode.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -32,12 +29,9 @@ public class RegistrationController {
         Map<String, String> response = emailService.sendOtpEmail(user.getEmail());
         return response;
     }
-
+    //http://localhost:8080/api/verify-otp?email=&otp=
     @PostMapping("/verify-otp")
-    public Map<String, String> verifyOtp(@RequestBody Map<String, String> requestBody) {
-        String email = requestBody.get("email");
-        String otp = requestBody.get("otp");
-
+    public Map<String, String> verifyOtp(@RequestParam String email,@RequestParam String otp ) {
         Map<String, String> response = emailVerificationService.verifyOtp(email, otp);
         return response;
     }

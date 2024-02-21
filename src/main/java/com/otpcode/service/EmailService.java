@@ -34,7 +34,7 @@ public class EmailService {
         response.put("message", "OTP sent successfully");
         return response;
     }
-    private void sendEmail(String to, String subject, String text) {
+    public void sendEmail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("atitpatel296@gmail.com");
         message.setTo(to);
